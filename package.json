@@ -1,0 +1,32 @@
+{
+  "name": "publish-pilet-action",
+  "version": "1.0.0",
+  "description": "GitHub action to publish a pilet.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smapiot/publish-pilet-action.git"
+  },
+  "keywords": [
+    "piral",
+    "pilet",
+    "github",
+    "action",
+    "github-actions"
+  ],
+  "author": "smapiot",
+  "homepage": "https://piral.io",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/smapiot/publish-pilet-action/issues"
+  },
+  "dependencies": {
+    "@actions/core": "^1.2.1",
+    "@actions/github": "^2.0.1",
+    "piral-cli": "^0.9.3"
+  }
+}

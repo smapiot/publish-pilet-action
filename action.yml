@@ -1,0 +1,25 @@
+name: 'Publish Pilet'
+description: 'Builds and publishes a pilet to some feed.'
+inputs:
+  feed:
+    description: 'The target feed name or feed service URL.'
+    required: true
+    default: 'sample'
+  api-key:
+    description: 'The API key to use for publishing the pilet.'
+    required: false
+    default: ''
+  base-dir:
+    description: 'The base directory relative to the project root.'
+    required: false
+    default: '.'
+  source:
+    description: 'The name of the entry file to consider from the base dir.'
+    required: false
+    default: 'src/index'
+outputs:
+  version:
+    description: 'The published version.'
+runs:
+  using: 'node12'
+  main: 'index.js'
