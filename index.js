@@ -20,7 +20,7 @@ async function runAction() {
     const cwd = path.resolve(workspace, baseDir);
     const url = fullUrl.test(feed) ? feed : `${defaultFeed}/${feed}`;
     const packageJson = path.resolve(cwd, 'package.json');
-    const { version } = require(packgeJson);
+    const { version } = require(packageJson);
 
     if (!fs.existsSync(path.resolve(cwd, 'node_modules'))) {
       console.log('Did not find a `node_modules` directory. Resolving dependencies first.');
