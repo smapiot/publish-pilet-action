@@ -23,7 +23,8 @@ async function runAction() {
 
     if (!fs.existsSync(path.resolve(cwd, 'node_modules'))) {
       console.log('Did not find a `node_modules` directory. Resolving dependencies first.');
-      child_process.execSync('npm install', { cwd, env: { ...process.env, NODE_ENV: 'development' } });
+      child_process.execSync('npm install', { cwd });
+      child_process.execSync('npm install --only=dev', { cwd });
     }
 
     await piral.apps.publishPilet(cwd, {
@@ -34,6 +35,7 @@ async function runAction() {
 
     core.setOutput('version', version);
   } catch (error) {
+    console.log('Length of API Key', (apiKey || '').length);
     core.setFailed(error.message);
   }
 }
