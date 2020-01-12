@@ -19,13 +19,17 @@ async function runAction() {
     const baseDir = core.getInput('base-dir') || '.';
     const cwd = path.resolve(workspace, baseDir);
     const url = fullUrl.test(feed) ? feed : `${defaultFeed}/${feed}`;
-    const { version } = require(path.resolve(cwd, 'package.json'));
+    const packageJson = path.resolve(cwd, 'package.json');
+    const { version } = require(packgeJson);
 
     if (!fs.existsSync(path.resolve(cwd, 'node_modules'))) {
       console.log('Did not find a `node_modules` directory. Resolving dependencies first.');
       child_process.execSync('npm install', { cwd });
-      child_process.execSync('npm install --only=dev', { cwd });
     }
+
+    console.dir(process.env);
+    console.log(fs.readFileSync(packageJson, 'utf8'));
+    console.log(core.getInput('api-key'));
 
     await piral.apps.publishPilet(cwd, {
       fresh: true,
@@ -35,7 +39,6 @@ async function runAction() {
 
     core.setOutput('version', version);
   } catch (error) {
-    console.log('Length of API Key', (apiKey || '').length);
     core.setFailed(error.message);
   }
 }
