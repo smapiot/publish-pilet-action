@@ -15,10 +15,6 @@ inputs:
     description: 'The base directory relative to the project root.'
     required: false
     default: '.'
-  source:
-    description: 'The name of the entry file to consider from the base dir.'
-    required: false
-    default: 'src/index'
 outputs:
   version:
     description: 'The published version.'
@@ -29,4 +25,3 @@ runs:
     - ${{ inputs.feed }}
     - ${{ inputs.api-key }}
     - ${{ inputs.api-base-dir }}
-    - ${{ inputs.api-base-source }}

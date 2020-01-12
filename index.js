@@ -17,20 +17,18 @@ async function runAction() {
     const feed = core.getInput('feed');
     const apiKey = core.getInput('api-key');
     const baseDir = core.getInput('base-dir') || '.';
-    const source = core.getInput('source');
     const cwd = path.resolve(workspace, baseDir);
     const url = fullUrl.test(feed) ? feed : `${defaultFeed}/${feed}`;
     const { version } = require(path.resolve(cwd, 'package.json'));
 
     if (!fs.existsSync(path.resolve(cwd, 'node_modules'))) {
       console.log('Did not find a `node_modules` directory. Resolving dependencies first.');
-      child_process.execSync('npm install', { cwd });
+      child_process.execSync('npm install', { cwd, env: { ...process.env, NODE_ENV: 'development' } });
     }
 
     await piral.apps.publishPilet(cwd, {
       fresh: true,
       apiKey,
-      source,
       url,
     });
 

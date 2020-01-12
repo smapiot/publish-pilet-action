@@ -18,10 +18,6 @@ Remark: If no full `http:` or `https:` URL is given the value is interpreted as 
 
 **Optional** The base directory relative to the project root.
 
-### `source`
-
-**Optional** The name of the entry file to consider from the base dir.
-
 ## Outputs
 
 ### `version`
