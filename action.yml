@@ -23,5 +23,10 @@ outputs:
   version:
     description: 'The published version.'
 runs:
-  using: 'node12'
-  main: 'index.js'
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.feed }}
+    - ${{ inputs.api-key }}
+    - ${{ inputs.api-base-dir }}
+    - ${{ inputs.api-base-source }}
