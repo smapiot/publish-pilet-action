@@ -28,8 +28,7 @@ async function runAction() {
     }
 
     console.dir(process.env);
-    console.log(fs.readFileSync(packageJson, 'utf8'));
-    console.log(core.getInput('api-key'));
+    console.log('Length of API Key', core.getInput('api-key').length);
 
     await piral.apps.publishPilet(cwd, {
       fresh: true,
