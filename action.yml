@@ -1,7 +1,8 @@
 name: 'Publish Pilet'
 description: 'Builds and publishes a pilet to some feed.'
-icon: package
-color: green
+branding:
+  icon: package
+  color: green
 inputs:
   feed:
     description: 'The target feed name or feed service URL.'
