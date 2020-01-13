@@ -2,6 +2,12 @@
 
 This GitHub action publishes a pilet to a provided feed.
 
+With this action you will usually not need to build (as in `npm run build`) anything.
+
+If you did not install the NPM dependencies (e.g., via `npm install`) this is done for you.
+
+**Important**: We recommend that you have the Piral CLI in the desired version included in your `devDependencies`. Otherwise, we'll resolve to the `latest` version of the Piral CLI.
+
 ## Inputs
 
 ### `feed`
@@ -61,7 +67,3 @@ jobs:
         feed: my-sample
         api-key: ${{ secrets.apiKey }}
 ```
-
-## Development
-
-We pretty much followed the [standard tutorial on GitHub help](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/creating-a-javascript-action).
