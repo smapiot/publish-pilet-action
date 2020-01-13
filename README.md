@@ -55,12 +55,6 @@ jobs:
     runs-on: [ubuntu-16.04]
     steps:
     - uses: actions/checkout@master
-    - name: Use Node.js
-      uses: actions/setup-node@v1
-      with:
-        node-version: '12.x'
-    - name: Install dependencies
-      run: npm install
     - name: Publish Pilet
       uses: smapiot/publish-pilet-action@v1
       with:
