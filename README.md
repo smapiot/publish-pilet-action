@@ -24,13 +24,42 @@ Remark: If no full `http:` or `https:` URL is given the value is interpreted as 
 
 The published version.
 
-## Example usage
+## Example Usage
+
+The simplified usage looks like:
 
 ```yaml
 uses: smapiot/publish-pilet-action@v1
 with:
-  feed: 'cross-fx'
+  feed: 'my-sample'
   api-key: 'abcdef1234567890'
+```
+
+A complete example could thus look as follows:
+
+```yaml
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  publish-pilet:
+    name: Build and Deploy
+    runs-on: [ubuntu-16.04]
+    steps:
+    - uses: actions/checkout@master
+    - name: Use Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+    - name: Install dependencies
+      run: npm install
+    - name: Publish Pilet
+      uses: smapiot/publish-pilet-action@v1
+      with:
+        feed: my-sample
+        api-key: ${{ secrets.apiKey }}
 ```
 
 ## Development

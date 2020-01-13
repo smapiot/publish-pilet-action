@@ -1,6 +1,6 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
-const child_process = require('child_process');
+const exec = require('@actions/exec');
 const piral = require('piral-cli');
 const path = require('path');
 const fs = require('fs');
@@ -9,7 +9,7 @@ const fullUrl = /^https?:\/\//i;
 const defaultFeed = 'https://feed.piral.io/api/v1/pilet';
 
 async function runAction() {
-  const workspace = process.env.GITHUB_WORKSPACE;
+  const workspace = process.env.RUNNER_WORKSPACE;
 
   console.log(`Triggered action: ${github.context.action}`);
 
@@ -23,12 +23,9 @@ async function runAction() {
     const { version } = require(packageJson);
 
     if (!fs.existsSync(path.resolve(cwd, 'node_modules'))) {
-      console.log('Did not find a `node_modules` directory. Resolving dependencies first.');
-      child_process.execSync('npm install', { cwd });
+      console.warn('Did not find a `node_modules` directory. Trying to resolve dependencies first.');
+      await exec.exec('npm install', undefined, { cwd });
     }
-
-    console.dir(process.env);
-    console.log('Length of API Key', core.getInput('api-key').length);
 
     await piral.apps.publishPilet(cwd, {
       fresh: true,
