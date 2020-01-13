@@ -10,14 +10,16 @@ const defaultFeed = 'https://feed.piral.io/api/v1/pilet';
 
 async function runAction() {
   const workspace = process.env.RUNNER_WORKSPACE;
+  const [_, repoName] = process.env.GITHUB_REPOSITORY.split('/');
 
+  console.log(`Currently in working directory: ${process.cwd()}`);
   console.log(`Triggered action: ${github.context.action}`);
 
   try {
     const feed = core.getInput('feed');
     const apiKey = core.getInput('api-key');
     const baseDir = core.getInput('base-dir') || '.';
-    const cwd = path.resolve(workspace, baseDir);
+    const cwd = path.resolve(workspace, repoName, baseDir);
     const url = fullUrl.test(feed) ? feed : `${defaultFeed}/${feed}`;
     const packageJson = path.resolve(cwd, 'package.json');
     const { version } = require(packageJson);
