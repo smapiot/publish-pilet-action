@@ -5,7 +5,7 @@ const path = require('path');
 const fs = require('fs');
 
 const fullUrl = /^https?:\/\//i;
-const defaultFeed = 'https://feed.piral.io/api/v1/pilet';
+const defaultFeed = 'https://feed.piral.cloud/api/v1/pilet';
 
 async function runAction() {
   const workspace = process.env.GITHUB_WORKSPACE;
