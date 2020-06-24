@@ -16,6 +16,7 @@ async function runAction() {
     const feed = core.getInput('feed');
     const apiKey = core.getInput('api-key');
     const baseDir = core.getInput('base-dir') || '.';
+    const bundler = core.getInput('bundler') || 'parcel';
     const cwd = path.resolve(workspace, baseDir);
     const url = fullUrl.test(feed) ? feed : `${defaultFeed}/${feed}`;
     const packageJsonPath = path.resolve(cwd, 'package.json');
@@ -29,7 +30,7 @@ async function runAction() {
 
     if (!fs.existsSync(piralCliPath)) {
       console.warn('Did not find a local `piral-cli` instance. Installing latest ...');
-      await exec.exec('npm install piral-cli --no-save', undefined, { cwd });
+      await exec.exec(`npm install piral-cli piral-cli-${bundler} --no-save`, undefined, { cwd });
     }
 
     const piralCli = require(piralCliPath);

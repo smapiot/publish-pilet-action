@@ -24,6 +24,10 @@ Remark: If no full `http:` or `https:` URL is given the value is interpreted as 
 
 **Optional** The base directory relative to the project root.
 
+### `bundler`
+
+**Optional** The bundler to use if nothing is specified in the code.
+
 ## Outputs
 
 ### `version`
@@ -35,7 +39,7 @@ The published version.
 The simplified usage looks like:
 
 ```yaml
-uses: smapiot/publish-pilet-action@v1
+uses: smapiot/publish-pilet-action@v2
 with:
   feed: 'my-sample'
   api-key: 'abcdef1234567890'
@@ -56,7 +60,7 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: Publish Pilet
-      uses: smapiot/publish-pilet-action@v1
+      uses: smapiot/publish-pilet-action@v2
       with:
         feed: my-sample
         api-key: ${{ secrets.apiKey }}

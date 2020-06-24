@@ -12,6 +12,10 @@ inputs:
     description: 'The API key to use for publishing the pilet.'
     required: false
     default: ''
+  bundler:
+    description: 'The bundler to use if nothing is specified in the code.'
+    required: false
+    default: 'parcel'
   base-dir:
     description: 'The base directory relative to the project root.'
     required: false
@@ -26,3 +30,4 @@ runs:
     - ${{ inputs.feed }}
     - ${{ inputs.api-key }}
     - ${{ inputs.api-base-dir }}
+    - ${{ inputs.bundler }}
