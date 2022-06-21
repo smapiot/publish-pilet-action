@@ -44,6 +44,7 @@ async function runAction() {
     core.setOutput('version', version);
   } catch (error) {
     core.setFailed(error.message);
+    return process.exit(1);
   }
 }
 
