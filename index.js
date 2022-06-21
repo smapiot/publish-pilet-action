@@ -22,6 +22,10 @@ async function runAction() {
     const packageJsonPath = path.resolve(cwd, 'package.json');
     const piralCliPath = path.resolve(cwd, 'node_modules', 'piral-cli');
     const { version } = require(packageJsonPath);
+    
+    console.log('I am currently in dir:', cwd);
+    console.log('Workspace is', workspace);
+    console.log('File names', fs.readDirSync(cwd));
 
     if (!fs.existsSync(path.resolve(cwd, 'node_modules'))) {
       console.warn('Did not find a `node_modules` directory. Trying to resolve dependencies first ...');
