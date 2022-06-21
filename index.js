@@ -15,8 +15,8 @@ async function runAction() {
   try {
     const feed = core.getInput('feed');
     const apiKey = core.getInput('api-key');
-    const baseDir = core.getInput('base-dir') || '.';
     const bundler = core.getInput('bundler') || 'webpack5';
+    const baseDir = core.getInput('base-dir') || '.';
     const cwd = path.resolve(workspace, baseDir);
     const url = fullUrl.test(feed) ? feed : `${defaultFeed}/${feed}`;
     const packageJsonPath = path.resolve(cwd, 'package.json');
