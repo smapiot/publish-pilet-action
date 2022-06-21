@@ -21,11 +21,7 @@ async function runAction() {
     const url = fullUrl.test(feed) ? feed : `${defaultFeed}/${feed}`;
     const packageJsonPath = path.resolve(cwd, 'package.json');
     const piralCliPath = path.resolve(cwd, 'node_modules', 'piral-cli');
-    const { version } = require(packageJsonPath);
-    
-    console.log('I am currently in dir:', cwd);
-    console.log('Workspace is', workspace);
-    console.log('File names', fs.readdirSync(cwd));
+    const { version } = require(packageJsonPath);    
 
     if (!fs.existsSync(path.resolve(cwd, 'node_modules'))) {
       console.warn('Did not find a `node_modules` directory. Trying to resolve dependencies first ...');
@@ -38,6 +34,9 @@ async function runAction() {
     }
 
     const piralCli = require(piralCliPath);
+    const { loadPlugins } = require(`${piralCliPath}/lib/plugin`);
+    
+    await loadPlugins();
 
     await piralCli.apps.publishPilet(cwd, {
       fresh: true,
