@@ -29,5 +29,5 @@ runs:
   args:
     - ${{ inputs.feed }}
     - ${{ inputs.api-key }}
-    - ${{ inputs.api-base-dir }}
     - ${{ inputs.bundler }}
+    - ${{ inputs.api-base-dir }}
